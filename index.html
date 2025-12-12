@@ -149,7 +149,7 @@
             50% { transform: translateX(-50%) rotate(2deg); }
         }
 
-        /* Floating eco particles */
+        /* Eco Particles */
         .eco-particles {
             position: fixed;
             top: 0;
@@ -183,7 +183,7 @@
             50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
         }
 
-        /* Rotating globe animation */
+        /* Rotating Globe */
         .globe-container {
             position: fixed;
             bottom: 10%;
@@ -312,10 +312,6 @@
             width: 100%;
         }
 
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-        }
-
         /* Main Content */
         .main-content {
             flex: 1;
@@ -336,8 +332,8 @@
         }
 
         .leaf-icon {
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
             margin-bottom: 1.5rem;
             animation: iconBounce 2s ease-in-out infinite, iconGlow 3s ease-in-out infinite;
             filter: drop-shadow(0 5px 15px rgba(107,142,35,0.4));
@@ -435,13 +431,48 @@
             50% { opacity: 0.5; transform: scale(0.8); }
         }
 
+        /* Contact Button */
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, #4a7c23, #6b8e23);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(107, 142, 35, 0.4);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.7s backwards;
+            text-decoration: none;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(107, 142, 35, 0.6);
+        }
+
+        .contact-btn:active {
+            transform: translateY(-1px);
+        }
+
         .features {
             display: flex;
             gap: 1.5rem;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             flex-wrap: wrap;
             justify-content: center;
-            animation: fadeInUp 1s ease-out 0.8s backwards;
+            animation: fadeInUp 1s ease-out 0.9s backwards;
         }
 
         .feature {
@@ -468,6 +499,120 @@
             width: 20px;
             height: 20px;
             color: #6b8e23;
+        }
+
+        /* Google Form Modal */
+        .form-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 1rem;
+        }
+
+        .form-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            position: relative;
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-modal.active .form-container {
+            transform: scale(1) translateY(0);
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, #6b8e23, #4a7c23);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .close-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            color: white;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .form-content {
+            height: calc(90vh - 80px);
+            overflow-y: auto;
+        }
+
+        .form-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Loading State */
+        .form-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            gap: 1rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e8f5dc;
+            border-top-color: #6b8e23;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .form-loading p {
+            color: #6b7a4d;
+            font-size: 1.1rem;
         }
 
         /* Footer */
@@ -528,15 +673,19 @@
             transform: translateY(-3px) rotate(10deg);
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
+            .nav-links { display: none; }
             .footer { flex-direction: column; gap: 1rem; text-align: center; }
             .features { flex-direction: column; gap: 0.75rem; }
             .tree-left, .tree-right { display: none; }
             .globe-container { display: none; }
+            .form-container { max-width: 100%; margin: 0; border-radius: 10px; }
+            .contact-btn { padding: 0.875rem 2rem; font-size: 1rem; }
         }
 
         @media (max-height: 700px) {
-            .leaf-icon { width: 60px; height: 60px; margin-bottom: 1rem; }
+            .leaf-icon { width: 90px; height: 90px; margin-bottom: 1rem; }
             .description { margin-bottom: 1.5rem; }
             .features { margin-top: 1.5rem; }
         }
@@ -602,10 +751,7 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="content-wrapper">
-            <svg class="leaf-icon" viewBox="0 0 24 24" fill="none" stroke="#6b8e23" stroke-width="1.5">
-                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z" fill="#e8f5dc"/>
-                <path d="M17 8c-4 0-7 3-8 7 1-2 4-3 6-3 0 0-3 4-6 4-1 0-2-1-2-2 0-4 4-8 10-8v2z" fill="#6b8e23"/>
-            </svg>
+            <img src="logo.png" alt="AveoEarth Logo" class="leaf-icon">
             
             <h1>Sustainability <span>Simplified</span></h1>
             <p class="tagline">Buy better. Live lighter.</p>
@@ -614,9 +760,19 @@
                 We're crafting something special for you! Our sustainable marketplace is being carefully designed to bring you eco-friendly products from artisans and green brands across the globe.
             </p>
 
-            <div class="status-badge">
-                <span class="dot"></span>
-                Under Development - Launching Soon!
+            <div class="buttons-container">
+                <div class="status-badge">
+                    <span class="dot"></span>
+                    Under Development - Launching Soon!
+                </div>
+
+                <!-- Contact Button -->
+                <button class="contact-btn" onclick="openForm()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    Join Our Waitlist
+                </button>
             </div>
 
             <div class="features">
@@ -645,6 +801,27 @@
         </div>
     </main>
 
+    <!-- Google Form Modal -->
+    <div class="form-modal" id="formModal">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Contact Information</h2>
+                <button class="close-btn" onclick="closeForm()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="form-content" id="formContent">
+                <div class="form-loading">
+                    <div class="spinner"></div>
+                    <p>Loading form...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-logo">
@@ -672,5 +849,56 @@
             </a>
         </div>
     </footer>
+
+    <script>
+        // IMPORTANT: Replace this with your actual Google Form embed URL
+        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdkra9dN_9CM90VHTHCyxwh3iW66jSyjvgwig7CpLRiZys6NQ/viewform?usp=publish-editor';
+        // Example: 'https://docs.google.com/forms/d/e/1FAIpQLSc.../viewform?embedded=true'
+
+        function openForm() {
+            const modal = document.getElementById('formModal');
+            const formContent = document.getElementById('formContent');
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Load the Google Form iframe
+            setTimeout(() => {
+                formContent.innerHTML = `<iframe src="${GOOGLE_FORM_URL}" frameborder="0"></iframe>`;
+            }, 300);
+        }
+
+        function closeForm() {
+            const modal = document.getElementById('formModal');
+            const formContent = document.getElementById('formContent');
+            
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Reset to loading state
+            setTimeout(() => {
+                formContent.innerHTML = `
+                    <div class="form-loading">
+                        <div class="spinner"></div>
+                        <p>Loading form...</p>
+                    </div>
+                `;
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('formModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeForm();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeForm();
+            }
+        });
+    </script>
 </body>
 </html>
